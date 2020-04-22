@@ -2,7 +2,7 @@
 pagetitle: Gesellschaftsmonitoring COVID19, Daten Pädagogische Hochschule Zürich
 ---
 
-![](http://github.com/bildungsmonitoringZH/bildungsmonitoringZH.github.io/raw/master/assets/ktzh_bi_logo_de-300x88.jpg)
+![](https://github.com/bildungsmonitoringZH/bildungsmonitoringZH.github.io/raw/master/assets/ktzh_bi_logo_de-300x88.jpg)
 ![](https://github.com/bildungsmonitoringZH/bildungsmonitoringZH.github.io/raw/master/assets/phzh_logo-300x88.jpg)
 
 # Gesellschaftsmonitoring COVID19, Daten Pädagogische Hochschule Zürich
@@ -21,6 +21,16 @@ Flavian Imlig <flavian.imlig@bi.zh.ch>, Bildungsdirektion
 
 ## Indikatorenbeschreibung
 
-### Durchschnittliche parallele Sessions in Ilias
+### Nutzung der Lernplattform ILIAS, durchschnittliche parallele Sessions
 
-Der Indikator beschreibt durchschnittliche Anzahl paralleler Sessions auf der Lernplattform ILIAS der PHZH. Diese Anzahl entspricht ungefähr dem Durchschnittswert der gleichzeitig eingeloggten, aktiven Benutzer im Tagesverlauf. Aktiv heisst, dass innerhalb von 5 Minuten mindestens einmal geklickt wurde.
+ILIAS ist die Lernplattform für Aus- und Weiterbildung der PHZH. Sie wird genutzt von den Dozierenden und den Studierenden.
+
+Der Indikator beschreibt durchschnittliche Anzahl paralleler Sessions auf ILIAS. Diese Anzahl entspricht ungefähr dem Durchschnittswert der gleichzeitig eingeloggten, aktiven Benutzer im Tagesverlauf. Aktiv heisst, dass innerhalb von 5 Minuten mindestens einmal geklickt wurde. Der Indikator zeigt damit die Intensität der Nutzung.
+
+Die Zeitreihe beginnt am 1. August 2019 und damit vor dem Beginn des Herbstsemesters 2019.
+
+## Vorgehen
+
+* Export der Session Statistics aus ILIAS
+* manueller Upload ins Verzeichnis `data_ilias`
+* R-Skript `prepareILIASdata.R` zum Generieren der erforderlichen Datenstruktur, automatisch ausgeführt nach dem Upload.
