@@ -41,7 +41,7 @@ getData <- function()
 # download and load data
 loadData <- function()
 {
-    files <- list.files(path = 'data_ilias', pattern = '^session.+\\d{8}.xlsx$', full.names = TRUE) %>%
+    files <- list.files(path = 'data_ilias', pattern = '^session.+\\d{8}.(csv)$', full.names = TRUE) %>%
         sort(decreasing = TRUE)
     
     data_full <- purrr::map_dfr(files, ~loadSingleData(.x))
@@ -51,17 +51,29 @@ loadData <- function()
 
 loadSingleData <- function(file)
 {
-    data_full <- openxlsx::read.xlsx(xlsxFile = file,
-                                     colNames = FALSE)
+    type <- str_extract(file, '\\w+$')
+    assert_that(is.string(type))
+    assert_that(noNA(type))
+    
+    data_full <- switch(type,
+           'xlsx' = openxlsx::read.xlsx(xlsxFile = file, colNames = FALSE),
+           'csv' = read.csv2(file, header = FALSE)) %>%
+        rename_all(~str_replace(.x, '[a-zA-Z]+', 'X'))
     
     data_date <- data_full$X2[str_which(data_full$X1, '^Datum des Reports$')] %>%
         str_replace(',.+', '') %>%
         lubridate::dmy()
     
-    data_idx <- str_which(data_full$X1, '^active_min$')
-    data_sessions <- openxlsx::read.xlsx(xlsxFile = file,
-                                         startRow = data_idx) %>%
-        mutate('slot_begin' := openxlsx::convertToDateTime(.data$slot_begin),
+    data_idx <- str_which(data_full$X1, '^active_min')
+    assert_that(is.number(data_idx))
+    
+    data_sessions <- switch(type,
+                            'xlsx' = openxlsx::read.xlsx(xlsxFile = file,
+                                         startRow = data_idx),
+                            'csv' = read.csv2(file, skip = data_idx-1, stringsAsFactors = FALSE)) %>%
+        mutate('slot_begin' := switch(type, 
+                                      'xlsx' = lubridate::as_date(openxlsx::convertToDateTime(.data$slot_begin)),
+                                      'csv' = lubridate::dmy_hm(.data$slot_begin)),
                'report_date' := data_date) %>%
         filter(.data$slot_begin < data_date)
     
