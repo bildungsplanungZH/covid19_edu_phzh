@@ -1,10 +1,11 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 22.04.2020
+# Date: 14.05.2020
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
+library(stringr)
 library(assertthat) # Version >= 0.2.1
 library(jsonlite)
 
