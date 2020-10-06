@@ -1,7 +1,7 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 14.05.2020
+# Date: 6.10.2020
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
@@ -26,7 +26,7 @@ getData <- function()
         filter(.data$date >= '2019-08-01') %>%
         arrange(desc(.data$report_date)) %>%
         group_by(.data$date) %>%
-        summarise('value' := first(.data$active_avg),
+        summarize('value' := dplyr::first(.data$active_avg),
                   'variable_short' := meta$variable_short) %>%
         ungroup() %>%
         arrange(.data$date)
