@@ -1,7 +1,7 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 6.10.2020
+# Date: 17.11.2020
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
@@ -15,10 +15,12 @@ getData <- function()
     # get data from xlsx files
     data_full <- loadData()
     
-    # get meta and specs
+    # get meta, specs and exclusion data
     meta <- getMetadata()
     
     df_spec <- readRDS(url('https://github.com/bildungsmonitoringZH/covid19_edu_mindsteps/raw/master/df_spec.rds'))
+    
+    excl <- getExclData()
     
     # select most current value for each date
     data_s <- data_full %>%
@@ -31,10 +33,13 @@ getData <- function()
         ungroup() %>%
         arrange(.data$date)
     
-    # generate output data
+    # combine with metadata
     data <- data_s %>%
         left_join(meta, by = 'variable_short') %>%
         select(df_spec$name)
+    
+    # eliminate values to exclude
+    data$value[which(data$date %in% excl$date)] <- NA_integer_
     
     return(data)
 }
@@ -92,6 +97,23 @@ getMetadata <- function(file)
     meta_t <- lapply(meta_raw, as.character)
     meta <- as.data.frame(meta_t, stringsAsFactors = F)
     return(meta)
+}
+
+# load exclusion data function
+getExclData <- function(file)
+{
+    if( missing(file) ) file <- file.path('data_ilias', 'ilias_exclusions.rds')
+    assert_that(is.string(file))
+    assert_that(file.exists(file))
+    assert_that(str_detect(file, '\\.rds$'))
+    
+    excl_raw <- readRDS(file)
+    excl <- excl_raw %>% tidyr::drop_na() %>% unique()
+    
+    assert_that(has_name(excl, 'date'))
+    assert_that(is.POSIXct(excl$date))
+    
+    return(excl)
 }
 
 # test result function

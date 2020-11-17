@@ -29,8 +29,10 @@ Der Indikator beschreibt durchschnittliche Anzahl paralleler Sessions auf ILIAS.
 
 Die Zeitreihe beginnt am 1. August 2019 und damit vor dem Beginn des Herbstsemesters 2019.
 
+Aus technischen Gründen müssen die Daten im Zeitraum von 7. bis 31. Oktober 2020 ausgeschlossen werden.
+
 ## Vorgehen
 
-* Export der Session Statistics aus ILIAS
+* Export der _Session Statistics_ aus ILIAS
 * manueller Upload ins Verzeichnis `data_ilias`
 * R-Skript `prepareILIASdata.R` zum Generieren der erforderlichen Datenstruktur, automatisch ausgeführt nach dem Upload.
