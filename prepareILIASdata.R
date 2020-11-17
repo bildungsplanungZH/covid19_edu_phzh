@@ -111,7 +111,7 @@ getExclData <- function(file)
     excl <- excl_raw %>% tidyr::drop_na() %>% unique()
     
     assert_that(has_name(excl, 'date'))
-    assert_that(is.POSIXct(excl$date))
+    assert_that(lubridate::is.POSIXct(excl$date))
     
     return(excl)
 }
