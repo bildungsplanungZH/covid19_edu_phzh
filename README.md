@@ -29,7 +29,7 @@ Der Indikator beschreibt durchschnittliche Anzahl paralleler Sessions auf ILIAS.
 
 Die Zeitreihe beginnt am 1. August 2019 und damit vor dem Beginn des Herbstsemesters 2019.
 
-Aus technischen Gründen müssen die Daten im Zeitraum von 7. bis 31. Oktober 2020 ausgeschlossen werden.
+Aus technischen Gründen müssen die Daten im Zeitraum von 7. Oktober bis 1. November 2020 ausgeschlossen werden.
 
 ## Vorgehen
 

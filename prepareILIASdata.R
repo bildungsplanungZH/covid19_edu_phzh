@@ -1,7 +1,7 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 17.11.2020
+# Date: 3.12.2020
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
@@ -114,6 +114,10 @@ getExclData <- function(file)
     assert_that(lubridate::is.POSIXct(excl$date))
     
     return(excl)
+    
+    data_prep %>% filter(is.na(.data$value) | .data$value %in% 600L) %>%
+        select(.data$date) %>%
+        saveRDS(file)
 }
 
 # test result function
