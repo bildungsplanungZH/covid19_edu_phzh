@@ -1,7 +1,7 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 3.12.2020
+# Date: 2.03.2021
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
@@ -63,7 +63,7 @@ loadSingleData <- function(file)
     
     data_full <- switch(type,
            'xlsx' = openxlsx::read.xlsx(xlsxFile = file, colNames = FALSE),
-           'csv' = read.csv2(file, header = FALSE)) %>%
+           'csv' = read.csv2(file, header = FALSE, encoding = 'UTF-8')) %>%
         rename_all(~str_replace(.x, '[a-zA-Z]+', 'X'))
     
     data_date <- data_full$X2[str_which(data_full$X1, '^Datum des Reports$')] %>%
