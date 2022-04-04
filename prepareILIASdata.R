@@ -1,13 +1,13 @@
 # prepare PHZH ILIAS data
 #
 # Authors: Flavian Imlig <flavian.imlig@bi.zh.ch>
-# Date: 2.03.2021
+# Date: 4.04.2022
 ###############################################################################
 
 library(dplyr) # Version >= 0.8.5
 library(stringr)
 library(assertthat) # Version >= 0.2.1
-library(jsonlite)
+# library(jsonlite)
 
 # get and transform data
 getData <- function()
@@ -93,7 +93,7 @@ getMetadata <- function(file)
     assert_that(is.string(file))
     assert_that(file.exists(file))
     
-    meta_raw <- read_json(file, simplifyVector = F)
+    meta_raw <- jsonlite::read_json(file, simplifyVector = F)
     meta_t <- lapply(meta_raw, as.character)
     meta <- as.data.frame(meta_t, stringsAsFactors = F)
     return(meta)
