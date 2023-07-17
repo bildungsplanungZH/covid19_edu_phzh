@@ -7,7 +7,7 @@ pagetitle: Gesellschaftsmonitoring COVID19, Daten Pädagogische Hochschule Züri
 
 # Gesellschaftsmonitoring COVID19, Daten Pädagogische Hochschule Zürich
 
-Daten zur Nutzung  im Rahmen des Projekts [Gesellschaftsmonitoring COVID19](https://statistikzh.github.io/covid19monitoring/)
+Daten zur Nutzung der Lernplattform Ilias der PHZH, erhoben im Rahmen des Projekts [Gesellschaftsmonitoring COVID19](https://statistikzh.github.io/covid19monitoring/)
 
 ## Datenlieferant
 
@@ -27,7 +27,7 @@ ILIAS ist die Lernplattform für Aus- und Weiterbildung der PHZH. Sie wird genut
 
 Der Indikator beschreibt durchschnittliche Anzahl paralleler Sessions auf ILIAS. Diese Anzahl entspricht ungefähr dem Durchschnittswert der gleichzeitig eingeloggten, aktiven Benutzer im Tagesverlauf. Aktiv heisst, dass innerhalb von 5 Minuten mindestens einmal geklickt wurde. Der Indikator zeigt damit die Intensität der Nutzung.
 
-Die Zeitreihe beginnt am 1. August 2019 und damit vor dem Beginn des Herbstsemesters 2019.
+Die Zeitreihe beginnt am 1. August 2019 und endet am 30. Juni 2023.
 
 Aus technischen Gründen müssen die Daten im Zeitraum von 7. Oktober bis 1. November 2020 ausgeschlossen werden.
 
